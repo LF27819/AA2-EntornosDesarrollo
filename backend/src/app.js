@@ -14,9 +14,47 @@ const db = knex({
     useNullAsDefault: true
 });
 
-app.get('/consolas', async (req, res) => {
-    const consolas = await db('consolas').select('*');
-    res.status(200).json(consolas);
+app.get('/videojuegos', async (req, res) => {
+    const videojuegos = await db('videojuegos').select('*');
+    res.status(200).json(videojuegos);
+});
+
+app.get('/videojuegos/:id_videojuego', async (req, res) => {
+    const videojuego = await db('videojuegos')
+        .select('*')
+        .where({ id_videojuego: req.params.id_videojuego })
+        .first();
+    res.status(200).json(videojuego);
+});
+
+app.post('/videojuegos', async (req, res) => {
+    await db('videojuegos').insert({
+        titulo: req.body.titulo,
+        anio: req.body.anio,
+        genero: req.body.genero,
+        id_consola: req.body.id_consola
+    });
+
+    res.status(201).json({});
+});
+
+app.put('/videojuegos/:id_videojuego', async (req, res) => {
+    await db('videojuegos').update({
+        titulo: req.body.titulo,
+        anio: req.body.anio,
+        genero: req.body.genero,
+        id_consola: req.body.id_consola
+    }).where({ id_videojuego: req.params.id_videojuego });
+
+    res.status(204).json({});
+});
+
+app.delete('/videojuegos/:id_videojuego', async (req, res) => {
+    await db('videojuegos')
+        .del()
+        .where({ id_videojuego: req.params.id_videojuego });
+
+    res.status(204).json({});
 });
 
 app.listen(8080, () => {
