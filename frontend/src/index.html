@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mario Videogames</title>
+    <script type="module" src="./server.js"></script>
 </head>
 
-<body>
-
-    <h1>Mario Videogames</h1>
-
-    <ul id="lista"></ul>
-
-    <script src="./server.js"></script>
-
+<body onload="readVideojuegos()">
+    <h1>Listado de videojuegos</h1>
+    <ul id="containerVideojuegos"></ul>
 </body>
 </html>
