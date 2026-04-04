@@ -1,0 +1,18 @@
+{
+  "name": "mario-frontend",
+  "version": "0.1",
+  "source": "src/index.html",
+  "type": "module",
+  "scripts": {
+    "start": "parcel --no-cache",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "parcel": "latest",
+    "axios": "^1.7.7"
+  },
+  "dependencies": {
+    "parcel": "latest",
+    "axios": "^1.7.7"
+  }
+}
