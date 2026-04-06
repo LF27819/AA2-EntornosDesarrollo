@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Personajes 🏰</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <script type="module" src="./personajes.js"></script>
+        <style> body { background-color: #ffe5e5; } </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarPrincipal">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./videojuegos.html">Videojuegos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./consolas.html">Consolas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="./personajes.html">Personajes</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container py-5">
+            <div class="text-center mb-5">
+                <h1 class="fw-bold text-danger">Gestión de personajes</h1>
+                <p class="text-muted"> Administra los personajes principales y secundarios.</p>
+            </div>
+
+            <div class="card shadow-sm border-0 mb-5">
+                <div class="card-header bg-danger text-white">
+                    <h2 class="h5 mb-0">Formulario de personajes</h2>
+                </div>
+                <div class="card-body">
+                    <form id="formPersonaje">
+                        <input type="hidden" id="id_personaje">
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Ej. Mario">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="rol" class="form-label">Rol</label>
+                                <input type="text" class="form-control" id="rol" placeholder="Ej. Héroe">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="principal" class="form-label">Principal</label>
+                                <select class="form-select" id="principal">
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="1">Sí</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex gap-2">
+                            <button type="submit" class="btn btn-danger" id="btnGuardarPersonaje">Guardar personaje</button>
+                            <button type="button" class="btn btn-secondary" id="btnLimpiarPersonaje">Limpiar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white">
+                    <h2 class="h5 mb-0 text-danger">Listado de personajes</h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-middle">
+                            <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Rol</th>
+                                <th>Principal</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody id="containerPersonajes"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
