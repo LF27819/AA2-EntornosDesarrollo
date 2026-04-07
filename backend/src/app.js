@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const knex = require('knex');
+const { body, validationResult } = require('express-validator');
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,45 @@ const db = knex({
     },
     useNullAsDefault: true
 });
+
+
+// Validaciones
+const validarVideojuego = [
+    body('titulo').notEmpty().withMessage('El título es obligatorio'),
+    body('anio')
+        .notEmpty().withMessage('El año es obligatorio')
+        .isNumeric().withMessage('El año debe ser numérico'),
+    body('genero').notEmpty().withMessage('El género es obligatorio'),
+    body('id_consola').notEmpty().withMessage('La consola es obligatoria'),
+    body('id_personaje').notEmpty().withMessage('El personaje es obligatorio')
+];
+
+const validarConsola = [
+    body('nombre').notEmpty().withMessage('El nombre es obligatorio'),
+    body('fabricante').notEmpty().withMessage('El fabricante es obligatorio'),
+    body('fecha_lanzamiento').notEmpty().withMessage('La fecha de lanzamiento es obligatoria'),
+    body('precio')
+        .notEmpty().withMessage('El precio es obligatorio')
+        .isFloat({ gt: 0 }).withMessage('El precio debe ser numérico y mayor que 0'),
+    body('descontinuada').notEmpty().withMessage('Debe indicar si la consola está descontinuada')
+];
+
+const validarPersonaje = [
+    body('nombre').notEmpty().withMessage('El nombre es obligatorio'),
+    body('rol').notEmpty().withMessage('El rol es obligatorio'),
+    body('principal').notEmpty().withMessage('Debe indicar si el personaje es principal')
+];
+
+function comprobarErrores(req, res) {
+    const errores = validationResult(req);
+
+    if (!errores.isEmpty()) {
+        res.status(400).json({ errores: errores.array() });
+        return true;
+    }
+
+    return false;
+}
 
 
 //videojuegos
@@ -37,7 +77,10 @@ app.get('/videojuegos/:id_videojuego', async (req, res) => {
     res.status(200).json(videojuego);
 });
 
-app.post('/videojuegos', async (req, res) => {
+app.post('/videojuegos', validarVideojuego, async (req, res) => {
+    const error = comprobarErrores(req, res);
+    if (error) return;
+
     await db('videojuegos').insert({
         titulo: req.body.titulo,
         anio: req.body.anio,
@@ -49,7 +92,10 @@ app.post('/videojuegos', async (req, res) => {
     res.status(201).json({});
 });
 
-app.put('/videojuegos/:id_videojuego', async (req, res) => {
+app.put('/videojuegos/:id_videojuego', validarVideojuego, async (req, res) => {
+    const error = comprobarErrores(req, res);
+    if (error) return;
+
     await db('videojuegos').update({
         titulo: req.body.titulo,
         anio: req.body.anio,
@@ -85,7 +131,10 @@ app.get('/consolas/:id_consola', async (req, res) => {
     res.status(200).json(consola);
 });
 
-app.post('/consolas', async (req, res) => {
+app.post('/consolas', validarConsola, async (req, res) => {
+    const error = comprobarErrores(req, res);
+    if (error) return;
+
     await db('consolas').insert({
         nombre: req.body.nombre,
         fabricante: req.body.fabricante,
@@ -97,7 +146,10 @@ app.post('/consolas', async (req, res) => {
     res.status(201).json({});
 });
 
-app.put('/consolas/:id_consola', async (req, res) => {
+app.put('/consolas/:id_consola', validarConsola, async (req, res) => {
+    const error = comprobarErrores(req, res);
+    if (error) return;
+
     await db('consolas').update({
         nombre: req.body.nombre,
         fabricante: req.body.fabricante,
@@ -133,7 +185,10 @@ app.get('/personajes/:id_personaje', async (req, res) => {
     res.status(200).json(personaje);
 });
 
-app.post('/personajes', async (req, res) => {
+app.post('/personajes', validarPersonaje, async (req, res) => {
+    const error = comprobarErrores(req, res);
+    if (error) return;
+
     await db('personajes').insert({
         nombre: req.body.nombre,
         rol: req.body.rol,
@@ -143,7 +198,10 @@ app.post('/personajes', async (req, res) => {
     res.status(201).json({});
 });
 
-app.put('/personajes/:id_personaje', async (req, res) => {
+app.put('/personajes/:id_personaje', validarPersonaje, async (req, res) => {
+    const error = comprobarErrores(req, res);
+    if (error) return;
+
     await db('personajes').update({
         nombre: req.body.nombre,
         rol: req.body.rol,
