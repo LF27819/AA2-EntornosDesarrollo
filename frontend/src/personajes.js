@@ -34,11 +34,14 @@ window.editPersonaje = function(id, nombre, rol, principal) {
 };
 
 window.deletePersonaje = function(id) {
-    axios.delete('http://localhost:8080/personajes/' + id)
-        .then(() => {
-            readPersonajes();
-            limpiarFormulario();
-        });
+    if (confirm('¿Está seguro de que desea eliminar este personaje?')) {
+        axios.delete('http://localhost:8080/personajes/' + id)
+            .then(() => {
+                readPersonajes();
+                limpiarFormulario();
+                alert('Personaje eliminado correctamente');
+            });
+    }
 };
 
 window.limpiarFormulario = function() {
@@ -52,6 +55,21 @@ window.limpiarFormulario = function() {
 document.getElementById('formPersonaje').addEventListener('submit', function(event) {
     event.preventDefault();
 
+    if (document.getElementById('nombre').value == '') {
+        alert('El nombre es obligatorio');
+        return;
+    }
+
+    if (document.getElementById('rol').value == '') {
+        alert('El rol es obligatorio');
+        return;
+    }
+
+    if (document.getElementById('principal').value == '') {
+        alert('Debe indicar si el personaje es principal');
+        return;
+    }
+
     const personaje = {
         nombre: document.getElementById('nombre').value,
         rol: document.getElementById('rol').value,
@@ -63,12 +81,14 @@ document.getElementById('formPersonaje').addEventListener('submit', function(eve
             .then(() => {
                 readPersonajes();
                 limpiarFormulario();
+                alert('Personaje añadido correctamente');
             });
     } else {
         axios.put('http://localhost:8080/personajes/' + document.getElementById('id_personaje').value, personaje)
             .then(() => {
                 readPersonajes();
                 limpiarFormulario();
+                alert('Personaje actualizado correctamente');
             });
     }
 });
