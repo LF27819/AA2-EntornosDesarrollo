@@ -64,13 +64,16 @@ window.editVideojuego = function(id, titulo, anio, genero, idConsola, idPersonaj
     document.getElementById('btnGuardarVideojuego').textContent = 'Actualizar videojuego';
 };
 
-//Borramos videjuego
+//Borramos videojuego
 window.deleteVideojuego = function(id) {
-    axios.delete('http://localhost:8080/videojuegos/' + id)
-        .then(() => {
-            readVideojuegos();
-            limpiarFormulario();
-        });
+    if (confirm('¿Está seguro de que desea eliminar este videojuego?')) {
+        axios.delete('http://localhost:8080/videojuegos/' + id)
+            .then(() => {
+                readVideojuegos();
+                limpiarFormulario();
+                alert('Videojuego eliminado correctamente');
+            });
+    }
 };
 
 //Limpiar el formulario
@@ -85,6 +88,37 @@ window.limpiarFormulario = function() {
 };
 
 document.getElementById('formVideojuego').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    if (document.getElementById('titulo').value == '') {
+        alert('El título es obligatorio');
+        return;
+    }
+
+    if (document.getElementById('anio').value == '') {
+        alert('El año es obligatorio');
+        return;
+    }
+
+    if (isNaN(document.getElementById('anio').value)) {
+        alert('El año debe ser numérico');
+        return;
+    }
+
+    if (document.getElementById('genero').value == '') {
+        alert('El género es obligatorio');
+        return;
+    }
+
+    if (document.getElementById('id_consola').value == '') {
+        alert('Debe seleccionar una consola');
+        return;
+    }
+
+    if (document.getElementById('id_personaje').value == '') {
+        alert('Debe seleccionar un personaje');
+        return;
+    }
 
     const videojuego = {
         titulo: document.getElementById('titulo').value,
@@ -99,12 +133,14 @@ document.getElementById('formVideojuego').addEventListener('submit', function(ev
             .then(() => {
                 readVideojuegos();
                 limpiarFormulario();
+                alert('Videojuego añadido correctamente');
             });
     } else {
         axios.put('http://localhost:8080/videojuegos/' + document.getElementById('id_videojuego').value, videojuego)
             .then(() => {
                 readVideojuegos();
                 limpiarFormulario();
+                alert('Videojuego actualizado correctamente');
             });
     }
 });

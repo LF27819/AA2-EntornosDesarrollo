@@ -38,11 +38,14 @@ window.editConsola = function(id, nombre, fabricante, fecha, precio, descontinua
 };
 
 window.deleteConsola = function(id) {
-    axios.delete('http://localhost:8080/consolas/' + id)
-        .then(() => {
-            readConsolas();
-            limpiarFormulario();
-        });
+    if (confirm('¿Está seguro de que desea eliminar esta consola?')) {
+        axios.delete('http://localhost:8080/consolas/' + id)
+            .then(() => {
+                readConsolas();
+                limpiarFormulario();
+                alert('Consola eliminada correctamente');
+            });
+    }
 };
 
 window.limpiarFormulario = function() {
@@ -58,6 +61,41 @@ window.limpiarFormulario = function() {
 document.getElementById('formConsola').addEventListener('submit', function(event) {
     event.preventDefault();
 
+    if (document.getElementById('nombre').value == '') {
+        alert('El nombre es obligatorio');
+        return;
+    }
+
+    if (document.getElementById('fabricante').value == '') {
+        alert('El fabricante es obligatorio');
+        return;
+    }
+
+    if (document.getElementById('fecha_lanzamiento').value == '') {
+        alert('El año de lanzamiento es obligatorio');
+        return;
+    }
+
+    if (document.getElementById('precio').value == '') {
+        alert('El precio es obligatorio');
+        return;
+    }
+
+    if (isNaN(document.getElementById('precio').value)) {
+        alert('El precio debe ser numérico');
+        return;
+    }
+
+    if (Number(document.getElementById('precio').value) <= 0) {
+        alert('El precio debe ser mayor que 0');
+        return;
+    }
+
+    if (document.getElementById('descontinuada').value == '') {
+        alert('Debe indicar si la consola está descontinuada');
+        return;
+    }
+
     const consola = {
         nombre: document.getElementById('nombre').value,
         fabricante: document.getElementById('fabricante').value,
@@ -71,12 +109,14 @@ document.getElementById('formConsola').addEventListener('submit', function(event
             .then(() => {
                 readConsolas();
                 limpiarFormulario();
+                alert('Consola añadida correctamente');
             });
     } else {
         axios.put('http://localhost:8080/consolas/' + document.getElementById('id_consola').value, consola)
             .then(() => {
                 readConsolas();
                 limpiarFormulario();
+                alert('Consola actualizada correctamente');
             });
     }
 });
