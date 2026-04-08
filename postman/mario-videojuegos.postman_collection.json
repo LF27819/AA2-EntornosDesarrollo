@@ -1,0 +1,413 @@
+{
+  "info": {
+    "_postman_id": "93bd40f7-e7bd-4b4b-8265-c22b612d71cb",
+    "name": "mario-videojuegos",
+    "description": "API para gestionar videojuegos, consolas y personajes de Mario Bros.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53466918",
+    "_collection_link": "https://go.postman.co/collection/53466918-93bd40f7-e7bd-4b4b-8265-c22b612d71cb?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "mario-videojuegos",
+      "item": [
+        {
+          "name": "Videojuegos",
+          "item": [
+            {
+              "name": "videojuegos",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"titulo\": \"Super Mario Sunshine\",\r\n    \"anio\": 2002,\r\n    \"genero\": \"Plataformas\",\r\n    \"id_consola\": 5\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/videojuegos",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "videojuegos"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "videojuegos",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/videojuegos",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "videojuegos"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "videojuegos/:id",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/videojuegos/5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "videojuegos",
+                    "5"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "videojuegos/:id",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"titulo\": \"Super Mario Bross Sunshine\",\r\n    \"anio\": 2002,\r\n    \"genero\": \"Plataformas\",\r\n    \"id_consola\": 5\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/videojuegos/5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "videojuegos",
+                    "5"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "videojuegos/:id",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/videojuegos/5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "videojuegos",
+                    "5"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Consolas",
+          "item": [
+            {
+              "name": "consolas",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre\": \"Nintendo GameCube\",\r\n    \"fabricante\": \"Nintendo\",\r\n    \"fecha_lanzamiento\": \"2001-09-14\",\r\n    \"precio\": 199.99,\r\n    \"descontinuada\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/consolas",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "consolas"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "consolas",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/consolas",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "consolas"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "consolas/:id",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/consolas/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "consolas",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "consolas/:id",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre\": \"Nintendo GameCube<>\",\r\n    \"fabricante\": \"Nintendo\",\r\n    \"fecha_lanzamiento\": \"2001-09-14\",\r\n    \"precio\": 199.99,\r\n    \"descontinuada\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/consolas/5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "consolas",
+                    "5"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "consolas/:id",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/consolas/5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "consolas",
+                    "5"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Personajes",
+          "item": [
+            {
+              "name": "personajes",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "  {\r\n        \"nombre\": \"Maria\",\r\n        \"rol\": \"Héroe\",\r\n        \"principal\": 1\r\n    }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/personajes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "personajes"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "personajes",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/personajes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "personajes"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "personajes/:id",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/personajes/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "personajes",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "personajes/:id",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "  {\r\n        \"id_personaje\": 1,\r\n        \"nombre\": \"Mario\",\r\n        \"rol\": \"Héroe\",\r\n        \"principal\": 1\r\n    }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/personajes/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "personajes",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "personajes/:id",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/personajes/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "personajes",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
